@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Laddu 🌸</title>
+    <style>
+        :root {
+            --soft-pink: #ffc2d1;
+            --deep-rose: #fb6f92;
+            --glass-white: rgba(255, 255, 255, 0.85);
+            --bg-gradient: linear-gradient(135deg, #fff0f3 0%, #ffccd5 100%);
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            font-family: 'Comic Sans MS', cursive;
+            overflow: hidden;
+            background: var(--bg-gradient);
+        }
+
+        /* 🌸 Floating Background Elements 💖 */
+        .floater {
+            position: fixed;
+            z-index: 1;
+            user-select: none;
+            pointer-events: none;
+            animation: floatUp linear infinite, sway ease-in-out infinite;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(110vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.7; }
+            90% { opacity: 0.7; }
+            100% { transform: translateY(-20vh) rotate(360deg); opacity: 0; }
+        }
+
+        @keyframes sway {
+            0%, 100% { margin-left: 0px; }
+            50% { margin-left: 30px; }
+        }
+
+        .name-floater {
+            font-weight: bold;
+            color: var(--deep-rose);
+            filter: drop-shadow(0 0 5px rgba(251, 111, 146, 0.3));
+        }
+
+        /* Overlay */
+        #overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--soft-pink);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            cursor: pointer;
+            transition: opacity 0.6s ease;
+        }
+
+        .start-heart { font-size: 80px; animation: pulse 1.5s infinite; }
+        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
+
+        /* Card Setup */
+        .content-layer {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .card {
+            background: var(--glass-white);
+            backdrop-filter: blur(8px);
+            border-radius: 40px;
+            padding: 30px;
+            width: 85%;
+            max-width: 380px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(251, 111, 146, 0.2);
+            border: 2px solid white;
+        }
+
+        .slide { display: none; }
+        .slide.active { display: block; animation: popIn 0.5s ease; }
+
+        @keyframes popIn { 0% { transform: scale(0.9); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+
+        .animation-box { width: 160px; margin: 0 auto 15px auto; border-radius: 15px; overflow: hidden; }
+        h1 { color: var(--deep-rose); margin: 10px 0; font-size: 1.6rem; }
+        p { color: #444; line-height: 1.4; margin-bottom: 20px; font-size: 1.05rem; }
+        
+        .btn {
+            background-color: var(--deep-rose);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #c94c6d;
+        }
+        .btn:active { transform: translateY(2px); box-shadow: 0 2px 0 #c94c6d; }
+    </style>
+</head>
+<body>
+
+    <audio id="bg-music" loop><source src="music.mp3" type="audio/mpeg"></audio>
+
+    <div id="floater-container"></div>
+
+    <div id="overlay" onclick="startApp()">
+        <div class="start-heart">💖</div>
+        <h2 style="color: white; margin-top: 20px;">Open for Laddu</h2>
+    </div>
+
+    <div class="content-layer">
+        <div class="card">
+            <div class="slide active">
+                <div class="animation-box">
+                    <div class="tenor-gif-embed" data-postid="4732597205436440540" data-share-method="host" data-aspect-ratio="0.638554" data-width="100%"><a href="https://tenor.com/view/bubu-gif-4732597205436440540">Bubu</a></div>
+                </div>
+                <h1>Hi Laddu...</h1>
+                <p>I know these days are tough. I'm here to make you feel a little better.</p>
+                <button class="btn" onclick="change(1)">Next 🧸</button>
+            </div>
+
+            <div class="slide">
+                <div class="animation-box">
+                    <div class="tenor-gif-embed" data-postid="5869006706266344939" data-share-method="host" data-aspect-ratio="1" data-width="100%"><a href="https://tenor.com/view/robert-bri-cute-hug-gif-5869006706266344939">Hug</a></div>
+                </div>
+                <h1>Gentle Hugs</h1>
+                <p>Sending a giant, soft hug to my Laddu. You aren't alone in this!</p>
+                <button class="btn" onclick="change(2)">I feel it!</button>
+            </div>
+
+            <div class="slide">
+                <div class="animation-box">
+                    <div class="tenor-gif-embed" data-postid="15523601252848334783" data-share-method="host" data-aspect-ratio="1" data-width="100%"><a href="https://tenor.com/view/milk-and-mocha-milk-and-mocha-bear-milk-mocha-milk-mocha-bear-bear-couple-gif-15523601252848334783">Mocha</a></div>
+                </div>
+                <h1>Relax, Babe</h1>
+                <p>Just lean on me today, Laddu. I'll take care of everything else.</p>
+                <button class="btn" onclick="change(3)">Aww... ☕</button>
+            </div>
+
+            <div class="slide">
+                <div class="animation-box">
+                    <div class="tenor-gif-embed" data-postid="18253393629348229424" data-share-method="host" data-aspect-ratio="1" data-width="100%"><a href="https://tenor.com/view/kristigocouple2024-gif-18253393629348229424">Kristi</a></div>
+                </div>
+                <h1>Rest Mode</h1>
+                <p>Let's just be cozy like this. You deserve all the rest in the world.</p>
+                <button class="btn" onclick="change(4)">Okay... ☁️</button>
+            </div>
+
+            <div class="slide">
+                <div class="animation-box">
+                    <div class="tenor-gif-embed" data-postid="15815973" data-share-method="host" data-aspect-ratio="1.23552" data-width="100%"><a href="https://tenor.com/view/couple-powerful-ha-notti-notty-gif-15815973">Powerful</a></div>
+                </div>
+                <h1>Strong Girl</h1>
+                <p>You're my powerful Laddu! This pain is temporary, but my love is forever.</p>
+                <button class="btn" onclick="change(5)">Keep going</button>
+            </div>
+
+            <div class="slide">
+                <div class="animation-box">
+                    <div class="tenor-gif-embed" data-postid="10024373220927347393" data-share-method="host" data-aspect-ratio="1" data-width="100%"><a href="https://tenor.com/view/pengu-pudgy-penguin-pudgypenguins-sweet-dreams-gif-10024373220927347393">Pengu</a></div>
+                </div>
+                <h1>Sweet Dreams</h1>
+                <p>If you need to sleep, just go for it. I'll be here waiting for you.</p>
+                <button class="btn" onclick="change(6)">Almost there</button>
+            </div>
+
+            <div class="slide">
+                <div class="animation-box">
+                    <div class="tenor-gif-embed" data-postid="714319281766920304" data-share-method="host" data-aspect-ratio="1.06867" data-width="100%"><a href="https://tenor.com/view/goma-cat-speaking-love-hearts-megaphone-gif-714319281766920304">Goma</a></div>
+                </div>
+                <h1>I Love You!!</h1>
+                <p>Just in case you didn't hear me... I LOVE YOU SO MUCH LADDU!</p>
+                <button class="btn" onclick="change(7)">The last one!</button>
+            </div>
+
+            <div class="slide">
+                <div class="animation-box">
+                    <div class="tenor-gif-embed" data-postid="1552306101087753538" data-share-method="host" data-aspect-ratio="1" data-width="100%"><a href="https://tenor.com/view/peach-and-goma-peach-loves-goma-peach-goma-peach-cat-gif-1552306101087753538">Peach</a></div>
+                </div>
+                <h1>Forever Yours</h1>
+                <p>Hope this brought a tiny smile to my Laddu's face. Rest well! ❤️</p>
+                <button class="btn" onclick="reset()">Restart ❤️</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const audio = document.getElementById('bg-music');
+        const overlay = document.getElementById('overlay');
+        const slides = document.querySelectorAll('.slide');
+        let current = 0;
+
+        function startApp() {
+            audio.play();
+            overlay.style.opacity = '0';
+            setTimeout(() => overlay.style.display = 'none', 600);
+        }
+
+        function change(next) {
+            slides[current].classList.remove('active');
+            current = next;
+            slides[current].classList.add('active');
+        }
+
+        function reset() {
+            slides[current].classList.remove('active');
+            current = 0;
+            slides[current].classList.add('active');
+        }
+
+        // 💖 Background Populator 🌸
+        const container = document.getElementById('floater-container');
+        const items = ['💖', '🌸', '✨', 'LADDU', '🍭', '💖'];
+        const count = 100; // Increased count
+
+        for (let i = 0; i < count; i++) {
+            const f = document.createElement('div');
+            const type = items[Math.floor(Math.random() * items.length)];
+            f.classList.add('floater');
+            if(type === 'LADDU') f.classList.add('name-floater');
+            f.innerText = type;
+
+            f.style.left = Math.random() * 100 + 'vw';
+            f.style.fontSize = (Math.random() * 1.5 + 0.8) + 'rem';
+            f.style.animationDuration = (Math.random() * 8 + 5) + 's';
+            f.style.animationDelay = (Math.random() * 10) + 's';
+            // Sway animation timing
+            f.style.setProperty('animation-timing-function', 'linear, ease-in-out');
+            
+            container.appendChild(f);
+        }
+    </script>
+    <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
+</body>
+</html>
